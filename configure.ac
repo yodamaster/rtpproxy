@@ -45,11 +45,11 @@ then
 fi
 
 # G.729
-AC_CHECK_HEADERS(g729_encoder.h, found_libg729=yes)
+AC_CHECK_HEADERS(bcg729/encoder.h, found_libg729=yes)
 if test "$found_libg729" = yes
 then
-  AC_CHECK_LIB(g729, g729_encoder_new,
-   LIBS_G729="-lg729"
+  AC_CHECK_LIB(bcg729, initBcg729EncoderChannel,
+   LIBS_G729=`pkg-config --libs libbcg729`
    G729_SUPPORT=ext
    AC_DEFINE([ENABLE_G729], 1, [Define if you have libg729 library installed])
   )
